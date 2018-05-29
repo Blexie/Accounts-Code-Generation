@@ -35,18 +35,21 @@ INFILE = ARGS.input
 OUTFILE = ARGS.output
 GRADUATES = ARGS.graduates
 
+IN_CSV = pandas.read_csv(INFILE)
+####Very Bad, revising...###
 #MAGIC#
-COLUMNS = defaultdict(list)
+#COLUMNS = defaultdict(list)
 #Import CSV in sensible format#
-with open(INFILE) as f:
-    READER = csv.reader(f)
-    next(READER)
-    for row in READER:
-        for (i, v) in enumerate(row):
-            COLUMNS[i].append(v)
+#with open(INFILE) as f:
+#    READER = csv.reader(f)
+#    next(READER)
+#    for row in READER:
+#        for (i, v) in enumerate(row):
+#            COLUMNS[i].append(v)
+####Very bad, revising...####
 #First 3 characters of surname#
 SHORTSURNAME = []
-for surname in COLUMNS[1]:
+for surname in IN_CSV['Surname']:
     SHORTSURNAME.append(surname.ljust(3, '0').upper()[:3])
 #Find any duplicates after truncation, and count them#
 SHORTSURNAMECOUNT = pandas.DataFrame(SHORTSURNAME, columns=['A']).groupby('A').cumcount()
@@ -70,6 +73,5 @@ FINAL = pandas.DataFrame([''.join(map(str, i))
                           for i in zip
                           ([INITIAL + str(SHORTYEAR) + n for n in SHORTSURNAME], COUNTER)],
                          columns=["Code"])
-IN_CSV = pandas.read_csv(INFILE)
 IN_CSV['Code'] = FINAL
 IN_CSV.to_csv(OUTFILE, index=False)
