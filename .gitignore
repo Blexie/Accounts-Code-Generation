@@ -1,7 +1,7 @@
 #ignore pyinstaller directories
-dist
-build
-__pycache__
+/dist/
+/build/
+/__pycache__/
 *.spec
 #Except standalone executable
-!dist\accounts_code_generation
+/!dist/accounts_code_generation.exe
