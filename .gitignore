@@ -4,4 +4,4 @@
 /__pycache__/
 *.spec
 #Except standalone executable
-/!dist/accounts_code_generation.exe
+!/dist/accounts_code_generation.exe
