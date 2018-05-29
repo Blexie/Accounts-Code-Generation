@@ -17,15 +17,15 @@ PARSER.add_argument("output",
 
 GRADUATE_PARSER = PARSER.add_mutually_exclusive_group(required=True)
 
-GRADUATE_PARSER.add_argument("--GRADUATES",
-                             help="For input of GRADUATES.",
-                             dest="GRADUATES",
+GRADUATE_PARSER.add_argument("--graduates",
+                             help="For input of graduates.",
+                             dest="graduates",
                              action='store_true')
 
 
 GRADUATE_PARSER.add_argument("--no-graduates",
                              help="For input files of non-graduates.",
-                             dest="GRADUATES",
+                             dest="graduates",
                              action='store_false')
 
 #END OF CLI ARGUMENTS#
