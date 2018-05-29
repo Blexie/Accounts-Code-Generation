@@ -2,7 +2,6 @@
 #######################################################
 #REQUIREMENTS#
 import datetime
-import csv
 import argparse
 from collections import defaultdict
 import pandas
@@ -34,19 +33,10 @@ ARGS = PARSER.parse_args()
 INFILE = ARGS.input
 OUTFILE = ARGS.output
 GRADUATES = ARGS.graduates
+#End of Variables#
 
 IN_CSV = pandas.read_csv(INFILE)
-####Very Bad, revising...###
-#MAGIC#
-#COLUMNS = defaultdict(list)
-#Import CSV in sensible format#
-#with open(INFILE) as f:
-#    READER = csv.reader(f)
-#    next(READER)
-#    for row in READER:
-#        for (i, v) in enumerate(row):
-#            COLUMNS[i].append(v)
-####Very bad, revising...####
+
 #First 3 characters of surname#
 SHORTSURNAME = []
 for surname in IN_CSV['Surname']:
