@@ -3,7 +3,6 @@
 #REQUIREMENTS#
 import datetime
 import argparse
-from collections import defaultdict
 import pandas
 #END OF REQUIREMENTS#
 PARSER = argparse.ArgumentParser(description="Script to generate account codes for use in Opera 3.")
