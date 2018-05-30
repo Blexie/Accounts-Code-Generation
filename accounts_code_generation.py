@@ -68,14 +68,14 @@ FINAL = pandas.DataFrame([''.join(map(str, i))
 
 #Rename Columns#
 IN_CSV.rename(columns={
-        'Forename':'Forename'
-        'Surname':'Surname'
-        'Address1':'SN_ADDR1'
-        'Address2':'SN_ADDR2'
-        'Address3':'SN_ADDR3'
-        'Address4':'SN_ADDR4'
-        'Postcode':'SN_PSTCODE'
-        'Email':'SN_EMAIL'
+        'Forename':'Forename',
+        'Surname':'Surname',
+        'Address1':'SN_ADDR1',
+        'Address2':'SN_ADDR2',
+        'Address3':'SN_ADDR3',
+        'Address4':'SN_ADDR4',
+        'Postcode':'SN_PSTCODE',
+        'Email':'SN_EMAIL',
         'PersonalEmail':'SN_ORDMAIL'
         }, inplace=True)
 #Insert new columns#
