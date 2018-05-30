@@ -52,8 +52,8 @@ SHORTYEAR = abs(datetime.datetime.now().year) % 100
 if GRADUATES:
     INITIAL = 'G'
 else:
-    if (datetime.datetime.now().year - 2010)% 26 >= 7:
-        INITIAL = chr(ord('A')+((datetime.datetime.now().year - 2011)% 26+1))
+    if (datetime.datetime.now().year - 2011)% 26 >= 7:
+        INITIAL = chr(ord('A')+((datetime.datetime.now().year - 2012)% 26))
     else:
         INITIAL = chr(ord('A')+((datetime.datetime.now().year - 2011)% 26))
 
