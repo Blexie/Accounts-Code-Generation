@@ -5,7 +5,7 @@ import datetime
 import argparse
 import pandas
 #END OF REQUIREMENTS#
-PARSER = argparse.ArgumentParser(description="Script to generate account codes for use in Opera 3.")
+PARSER = argparse.ArgumentParser(description="Script to generate the SN_ACCOUNT field for use in Opera 3.")
 #CLI ARGUMENTS#
 PARSER.add_argument("input",
                     help="Input file", type=str)
@@ -16,7 +16,7 @@ PARSER.add_argument("output",
 GRADUATE_PARSER = PARSER.add_mutually_exclusive_group(required=True)
 
 GRADUATE_PARSER.add_argument("--graduates",
-                             help="For input of graduates.",
+                             help="For input files of graduates.",
                              dest="graduates",
                              action='store_true')
 
@@ -52,15 +52,15 @@ SHORTYEAR = abs(datetime.datetime.now().year) % 100
 if GRADUATES:
     INITIAL = 'G'
 else:
-    if (datetime.datetime.now().year - 2010)% 25 >= 7:
-        INITIAL = chr(ord('A')+((datetime.datetime.now().year - 2011)% 25+1))
+    if (datetime.datetime.now().year - 2010)% 26 >= 7:
+        INITIAL = chr(ord('A')+((datetime.datetime.now().year - 2011)% 26+1))
     else:
-        INITIAL = chr(ord('A')+((datetime.datetime.now().year - 2011)% 25))
+        INITIAL = chr(ord('A')+((datetime.datetime.now().year - 2011)% 26))
 
 #Final glue and output#
 FINAL = pandas.DataFrame([''.join(map(str, i))
                           for i in zip
                           ([INITIAL + str(SHORTYEAR) + n for n in SHORTSURNAME], COUNTER)],
-                         columns=["Code"])
-IN_CSV['Code'] = FINAL
+                         columns=["SN_ACCOUNT"])
+IN_CSV['SN_ACCOUNT'] = FINAL
 IN_CSV.to_csv(OUTFILE, index=False)
