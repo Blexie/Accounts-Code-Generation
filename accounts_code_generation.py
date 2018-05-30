@@ -5,10 +5,20 @@ import datetime
 import argparse
 import pandas
 #END OF REQUIREMENTS#
-PARSER = argparse.ArgumentParser(description="Script to generate the SN_ACCOUNT field for use in Opera 3.")
+PARSER = argparse.ArgumentParser(
+    description="Script to generate the SN_ACCOUNT field for use in Opera 3.")
 #CLI ARGUMENTS#
-PARSER.add_argument("input",
-                    help="Input file", type=str)
+PARSER.add_argument("input", help="""
+    Input file. Required headers: 
+   'Forename'
+   'Surname'
+   'Address1'
+   'Address2'
+   'Address3'
+   'Address4'
+   'Postcode'
+   'Email'
+   'PersonalEmail'""", type=str)
 
 PARSER.add_argument("output",
                     help="Output file", type=str)
@@ -68,16 +78,16 @@ FINAL = pandas.DataFrame([''.join(map(str, i))
 
 #Rename Columns#
 IN_CSV.rename(columns={
-        'Forename':'Forename',
-        'Surname':'Surname',
-        'Address1':'SN_ADDR1',
-        'Address2':'SN_ADDR2',
-        'Address3':'SN_ADDR3',
-        'Address4':'SN_ADDR4',
-        'Postcode':'SN_PSTCODE',
-        'Email':'SN_EMAIL',
-        'PersonalEmail':'SN_ORDMAIL'
-        }, inplace=True)
+    'Forename':'Forename',
+    'Surname':'Surname',
+    'Address1':'SN_ADDR1',
+    'Address2':'SN_ADDR2',
+    'Address3':'SN_ADDR3',
+    'Address4':'SN_ADDR4',
+    'Postcode':'SN_PSTCODE',
+    'Email':'SN_EMAIL',
+    'PersonalEmail':'SN_ORDMAIL'
+    }, inplace=True)
 #Insert new columns#
 IN_CSV.insert(loc=0, column='SN_ACCOUNT', value=FINAL)
 IN_CSV.insert(loc=1, column='SN_NAME', value=IN_CSV.Forename+' '+IN_CSV.Surname)
