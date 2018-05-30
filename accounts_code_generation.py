@@ -88,6 +88,7 @@ IN_CSV.insert(loc=11, column='SN_CPRFL', value='STANDARD')
 IN_CSV.insert(loc=13, column='SN_FCREATE', value='')
 IN_CSV['SN_EMAILST'] = 'T'
 IN_CSV['SN_DOCMAIL'] = '8'
-del IN_CSV['Forename', 'Surname']
+del IN_CSV['Forename']
+del IN_CSV['Surname']
 #Out#
 IN_CSV.to_csv(OUTFILE, index=False)
