@@ -34,7 +34,10 @@ OUTFILE = ARGS.output
 GRADUATES = ARGS.graduates
 #End of Variables#
 
+#Import CSV and rename the columns#
 IN_CSV = pandas.read_csv(INFILE)
+
+
 
 #First 3 characters of surname#
 SHORTSURNAME = []
@@ -62,5 +65,29 @@ FINAL = pandas.DataFrame([''.join(map(str, i))
                           for i in zip
                           ([INITIAL + str(SHORTYEAR) + n for n in SHORTSURNAME], COUNTER)],
                          columns=["SN_ACCOUNT"])
-IN_CSV['SN_ACCOUNT'] = FINAL
+
+#Rename Columns#
+IN_CSV.rename(columns={
+        'Forename':'Forename'
+        'Surname':'Surname'
+        'Address1':'SN_ADDR1'
+        'Address2':'SN_ADDR2'
+        'Address3':'SN_ADDR3'
+        'Address4':'SN_ADDR4'
+        'Postcode':'SN_PSTCODE'
+        'Email':'SN_EMAIL'
+        'PersonalEmail':'SN_ORDMAIL'
+        }, inplace=True)
+#Insert new columns#
+IN_CSV.insert(loc=0, column='SN_ACCOUNT', value=FINAL)
+IN_CSV.insert(loc=1, column='SN_NAME', value=IN_CSV.Forename+' '+IN_CSV.Surname)
+IN_CSV.insert(loc=8, column='SN_TELENO', value='')
+IN_CSV.insert(loc=9, column='SN_CUSTYPE', value='UN')
+IN_CSV.insert(loc=10, column='SN_TPRFL', value='STUDENT')
+IN_CSV.insert(loc=11, column='SN_CPRFL', value='STANDARD')
+IN_CSV.insert(loc=13, column='SN_FCREATE', value='')
+IN_CSV['SN_EMAILST'] = 'T'
+IN_CSV['SN_DOCMAIL'] = '8'
+IN_CSV.drop(labels='Forename','Surname', inplace=True)
+#Out#
 IN_CSV.to_csv(OUTFILE, index=False)
