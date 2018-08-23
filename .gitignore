@@ -5,3 +5,5 @@
 *.spec
 #Except standalone executable
 !/dist/accounts_code_generation.exe
+#Ignore test data
+*.csv
